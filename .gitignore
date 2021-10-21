@@ -1,4 +1,5 @@
 dist
+.version
 *.tar.gz
 main
 go-quic-proxy
