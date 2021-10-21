@@ -20,8 +20,10 @@ jobs:
             fi
             VERSION=$(<.version)
             DEBVERSION=${VERSION/-/\~}
+            echo "dist/go-quic-proxy_${DEBVERSION}_linux_${arch}.deb"
+            ls -la dist/
             for arch in amd64 ; do
-              curl --fail --request PUT -T "go-quic-proxy_${DEBVERSION}_linux_${arch}.deb" \
+              curl --fail --request PUT -T "dist/go-quic-proxy_${DEBVERSION}_linux_${arch}.deb" \
                 -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}"  \
                 "https://sixriver.jfrog.io/sixriver/internal-tools/pool/main/g/go-quic-proxy/go-quic-proxy_${DEBVERSION}_linux_${arch}.deb;deb.distribution=xenial;deb.component=main;deb.architecture=${arch}"
             done
