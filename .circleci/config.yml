@@ -4,28 +4,28 @@ orbs:
   sixrs-gke: sixriversystems/sixrs-gke@3
 jobs:
   release:
-      docker:
-        - image: cimg/go:1.16
-      steps:
-        - checkout
-        - sixrs-gke/run-release
-        - sixrs-gke/goreleaser
-        - run:
-        - run:
-            name: upload debs to artifactory
-            command: |
-              set -xeuo pipefail
-              ISDEV=
-              if [ "$CIRCLE_BRANCH" != "main" ]; then
-                ISDEV=-dev
-              fi
-              VERSION=$(<.version)
-              DEBVERSION=${VERSION/-/\~}
-              for arch in amd64 ; do
-                curl --fail --request PUT -T "go-quic-proxy_${DEBVERSION}_linux_${arch}.deb" \
-                  -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}"  \
-                  "https://sixriver.jfrog.io/sixriver/internal-tools/pool/main/g/go-quic-proxy/go-quic-proxy_${DEBVERSION}_linux_${arch}.deb;deb.distribution=xenial;deb.component=main;deb.architecture=${arch}"
-              done
+    docker:
+      - image: cimg/go:1.16
+    steps:
+      - checkout
+      - sixrs-gke/run-release
+      - sixrs-gke/goreleaser
+      - run:
+      - run:
+          name: upload debs to artifactory
+          command: |
+            set -xeuo pipefail
+            ISDEV=
+            if [ "$CIRCLE_BRANCH" != "main" ]; then
+              ISDEV=-dev
+            fi
+            VERSION=$(<.version)
+            DEBVERSION=${VERSION/-/\~}
+            for arch in amd64 ; do
+              curl --fail --request PUT -T "go-quic-proxy_${DEBVERSION}_linux_${arch}.deb" \
+                -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}"  \
+                "https://sixriver.jfrog.io/sixriver/internal-tools/pool/main/g/go-quic-proxy/go-quic-proxy_${DEBVERSION}_linux_${arch}.deb;deb.distribution=xenial;deb.component=main;deb.architecture=${arch}"
+            done
 workflows:
   build_and_release:
     jobs:
