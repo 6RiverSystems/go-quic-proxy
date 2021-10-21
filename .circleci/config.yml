@@ -21,8 +21,8 @@ jobs:
             VERSION=$(<.version)
             DEBVERSION=${VERSION/-/\~}
             ls -la dist/
-            arch="amd64"
-            for arch in amd64,arm64 ; do
+            array=( amd64 arm64 )
+            for arch in "${array[@]}" ; do
               echo "dist/go-quic-proxy_${DEBVERSION}_linux_${arch}.deb"
               curl --fail --request PUT -T "dist/go-quic-proxy_${DEBVERSION}_linux_${arch}.deb" \
                 -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}"  \
