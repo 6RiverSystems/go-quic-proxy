@@ -11,7 +11,6 @@ jobs:
       - sixrs-gke/run-release
       - sixrs-gke/goreleaser
       - run:
-      - run:
           name: upload debs to artifactory
           command: |
             set -xeuo pipefail
