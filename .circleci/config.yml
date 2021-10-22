@@ -30,7 +30,7 @@ jobs:
               echo "dist/go-quic-proxy_${DEBVERSION}_linux_${arch}.deb"
               curl --fail --request PUT -T "dist/go-quic-proxy_${DEBVERSION}_linux_${arch}.deb" \
                 -H "X-JFrog-Art-Api: ${ARTIFACTORY_API_KEY}"  \
-                "https://sixriver.jfrog.io/sixriver/internal-tools/pool/main/g/go-quic-proxy/go-quic-proxy_${DEBVERSION}_linux_${arch}.deb;deb.distribution=xenial;deb.component=main;deb.architecture=${arch}"
+                "https://sixriver.jfrog.io/sixriver/debian/pool/main/g/go-quic-proxy/go-quic-proxy_${DEBVERSION}_linux_${arch}.deb;deb.distribution=xenial;deb.component=main;deb.architecture=${arch}"
             done
 workflows:
   build_and_release:
