@@ -10,6 +10,7 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 19.03.8
+          docker_layer_caching: true
       - sixrs-gke/docker-login
       - sixrs-gke/run-release
       - sixrs-gke/goreleaser
