@@ -13,7 +13,6 @@ builds:
     binary: "{{ .ProjectName }}"
     goos:
       - linux
-      - darwin
     goarch:
       - amd64
       - arm64
@@ -42,11 +41,13 @@ dockers:
   -
     # GOOS of the built binaries/packages that should be used.
     goos: linux
+    goarch: amd64
     image_templates:
       - gcr.io/plasma-column-128721/go-quic-proxy:{{ .Tag }}
   -
     # GOOS of the built binaries/packages that should be used.
     goos: linux
+    goarch: amd64
     image_templates:
       - gcr.io/plasma-column-128721/go-quic-proxy:latest
     skip_push: auto
