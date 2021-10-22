@@ -55,6 +55,10 @@ dockers:
 nfpms:
   - formats:
       - deb
+    maintainer: 6RS DevOps <devops@6river.com>
+    description: Golang quic proxy
+    vendor: 6River Systems
+    homepage: https://github.com/6RiverSystems/go-quic-proxy
     bindir: /usr/bin
 
 # artifactories:
