@@ -35,6 +35,22 @@ archives:
       amd64: x86_64
     files:
       - README*
+dockers:
+  # You can have multiple Docker images.
+  - id: version_image
+
+    # GOOS of the built binaries/packages that should be used.
+    goos: linux
+    image_templates:
+      - gcr.io/plasma-column-128721/go-quic-proxy:{{ .Tag }}
+  - id: latest_image
+
+    # GOOS of the built binaries/packages that should be used.
+    goos: linux
+    image_templates:
+      - gcr.io/plasma-column-128721/go-quic-proxy:latest
+    skip_push: auto
+
 nfpms:
   - formats:
       - deb

@@ -8,6 +8,9 @@ jobs:
       - image: cimg/go:1.16
     steps:
       - checkout
+      - setup_remote_docker:
+          version: 19.03.8
+      - sixrs-gke/docker-login
       - sixrs-gke/run-release
       - sixrs-gke/goreleaser
       - run:
